@@ -61,7 +61,7 @@ class ColorCutQuantizer
     private static function shouldIgnoreSwatch(Swatch $swatch)
     {
         $hslColor = $swatch->getColor()->asHSLColor();
-        return self::isWhite($hslColor) || self::isBlack($hslColor) || self::isNearRedILine($hslColor);
+        return self::isWhite($hslColor) || self::isBlack($hslColor);
     }
 
     private static function isWhite(HSLColor $hslColor)
@@ -72,11 +72,6 @@ class ColorCutQuantizer
     private static function isBlack(HSLColor $hslColor)
     {
         return $hslColor->lightness <= self::BLACK_MAX_LIGHTNESS;
-    }
-
-    private static function isNearRedILine(HSLColor $hslColor)
-    {
-        return $hslColor->hue >= 10 / 360 && $hslColor->hue <= 37 / 360 && $hslColor->saturation <= 0.82;
     }
 }
 
